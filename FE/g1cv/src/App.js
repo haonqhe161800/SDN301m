@@ -1,16 +1,18 @@
-import './App.css';
 import { useDispatch } from "react-redux";
 import ListRouter from "./routing/Router";
-import { useEffect } from 'react';
+import { useEffect } from "react";
+import { getCurrentUser } from "./Store/userSlice";
+import Blank from "./Components/Screens/Blank";
 
 function App() {
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch()
-  })
+    dispatch(getCurrentUser());
+  }, [dispatch])
   return (
     <>
-      <ListRouter/>
+      {/* <Blank itemsPerPage={4} />, */}
+      <ListRouter />
     </>
   );
 }

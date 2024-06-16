@@ -1,5 +1,5 @@
-// import Default from "../Layouts/Default";
-// import background from "../../Image/background.jpg";
+import Default from "../Layouts/Default";
+import background from "../../Image/background.jpg";
 import Select from "react-select";
 import { useEffect, useState } from "react";
 import Form from 'react-bootstrap/Form';
