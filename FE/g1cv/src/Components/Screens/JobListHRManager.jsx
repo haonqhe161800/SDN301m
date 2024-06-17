@@ -22,7 +22,7 @@ function JobListHRManager(props) {
         document.title = 'Danh sách công việc';
         async function getAllJobs() {
             try {
-                const res = await axios.get(`http://localhost:9999/api/post/get-posts-by-company-id/${staff.companyId._id}`).catch(err => console.log(err));
+                const res = await axios.get(`http://localhost:9999/post`).catch(err => console.log(err));
                 const data = res.data.data;
                 setPosts(data);
             } catch (error) {
@@ -30,20 +30,7 @@ function JobListHRManager(props) {
             }
         }
         getAllJobs();
-    }, [])
-
-    function updatePost(id) {
-        nativigation(`/chinh-sua-bai-tuyen-dung/${id}`);
-    }
-
-    function deletePost(id) {
-        axios.delete(`http://localhost:9999/api/post/delete-post-by-id/${id}`).then(res => {
-            if (res.status === 200) {
-                const newPosts = posts.filter(post => post._id !== id);
-                setPosts(newPosts);
-            }
-        }).catch(err => console.log(err));
-    }
+    }, [posts])
 
     function formatDate(date) {
         const year = date.getFullYear();
@@ -54,31 +41,6 @@ function JobListHRManager(props) {
 
         return `${day}/${month}/${year}`;
     }
-
-    const handleEdit = async (postId, value) => {
-        try {
-            const res = await axios.put(`http://localhost:9999/api/post/accept-post`, {
-                id: postId,
-                statusPost: value,
-            });
-
-            console.log(res.data.status);
-            if (res.data.status === "accepted") {
-                window.alert('Cập nhật trạng thái bài viết hiển thị');
-            } else if (res.data.status = "Pending") {
-                window.alert('Cập nhật trạng thái bài viết chờ');
-            } else {
-                window.alert('Cập nhật trạng thái bài viết loại');
-            }
-
-            const ress = await axios.get(`http://localhost:9999/api/post/get-posts-by-company-id/${staff.companyId._id}`).catch(err => console.log(err));
-            const data = ress.data.data;
-            setPosts(data);
-        } catch (error) {
-            toast.error('Đã có lỗi xảy ra trong quá trình thay đổi trạng thái bài viết');
-            console.error(error);
-        }
-    };
 
     function getColorForStatus(status) {
         switch (status) {
@@ -96,10 +58,13 @@ function JobListHRManager(props) {
     return (
         <DashboardCustomer roleCo={'Danh sách công ty'} setTogNavBar={setTogNavBar} togNavBar={togNavBar} useNavBarV2={true} >
             <HeaderV2 hrefType={'Xem bài viết'} />
-            <section id='section-header' className=' bg-gradient-to-r from-[#4973CE] to-[#47BDE1] text-gray-200'>
+            <section id='section-header' className='bg-gradient-to-r from-[#4973CE] to-[#47BDE1] text-gray-200'>
                 <div className='pl-[9em] py-16'>
                     <Breadcrumb text1={'Trang chủ'} text2={'Danh sách công việc'} />
-                    <h2 className='text-[2em] font-semibold leading-7 py-3'>Danh sách công việc</h2>
+                    <div className='flex items-center justify-between py-3'>
+                        <h2 className='text-[2em] font-semibold leading-7'>Danh sách công việc</h2>
+                        <button className='ml-4 mr-[100px] px-4 py-3 bg-gradient-to-r from-[#3B5CA8] to-[#3EA6CC] text-white font-bold rounded'>Tạo bài viết mới</button>
+                    </div>
                     <p className='text-[0.8em] font-thin'>Tại Nodejs, chúng tôi không chỉ cung cấp công việc, chúng tôi tạo ra cơ hội nghề nghiệp</p>
                 </div>
             </section>
@@ -139,7 +104,7 @@ function JobListHRManager(props) {
                                 </th>
                             </tr>
                         </thead>
-                        <tbody>
+                        {/* <tbody>
                             {
                                 posts && posts.map((post, index) => (
                                     <tr className="bg-white border-b border-gray-200" key={post._id}>
@@ -154,7 +119,6 @@ function JobListHRManager(props) {
 
                                             {editingIndex === index ? (
                                                 <select
-                                                    onChange={(e) => handleEdit(post._id, e.target.value)}
                                                     className="border border-gray-300 rounded px-2 py-1 focus:outline-none focus:border-blue-500"
                                                 >
                                                     <option value='accepted' style={{ color: "green" }} selected={post.status === 'accepted'}>Accepted</option>
@@ -172,12 +136,59 @@ function JobListHRManager(props) {
                                             {post.location}
                                         </td>
                                         <td className="px-3 py-4 flex gap-x-3 justify-center">
-                                            <MdOutlineRemoveRedEye size={20} color='#1c2551' className='cursor-pointer' onClick={() => updatePost(post._id)} />
-                                            <IoCheckmarkDoneCircle size={20} color='#d63434' className='cursor-pointer posts' onClick={() => deletePost(post._id)} />
+                                            <MdOutlineRemoveRedEye size={20} color='#1c2551' className='cursor-pointer'/>
+                                            <IoCheckmarkDoneCircle size={20} color='#d63434' className='cursor-pointer posts'/>
                                         </td>
                                     </tr>
                                 ))
                             }
+                        </tbody> */}
+                        <tbody>
+                            <tr className="bg-white border-b border-gray-200">
+                                <th scope="row" class="px-3 py-4 font-medium text-gray-900 whitespace-nowrap">
+                                    Fresher Automation Test [HN]
+                                </th>
+                                <td className="px-3 py-4">
+                                    6 - 8 triệu
+                                </td>
+                                <td className="px-3 py-4cursor-pointer"
+                                    style={{ color: "red" }}>
+                                    Fulfilled
+                                </td>
+                                <td class="px-3 py-4">
+                                    2024-08-07
+                                </td>
+                                <td className="px-3 py-4">
+                                    Tòa nhà FPT Building, số 17 Duy Tân, Cầu Giấy, Hà Nội
+                                </td>
+                                <td className="px-3 py-4 flex gap-x-3 justify-center">
+                                    <MdOutlineRemoveRedEye size={20} color='#1c2551' className='cursor-pointer' />
+                                    <IoCheckmarkDoneCircle size={20} color='#d63434' className='cursor-pointer posts' />
+                                </td>
+                            </tr>
+                            <tr className="bg-white border-b border-gray-200">
+                                <th scope="row" class="px-3 py-4 font-medium text-gray-900 whitespace-nowrap">
+                                    Fresher Java
+                                </th>
+                                <td className="px-3 py-4">
+                                    6 - 9 triệu
+                                </td>
+                                <td className="px-3 py-4cursor-pointer"
+                                    style={{ color: "red" }}>
+                                    Fulfilled
+                                </td>
+                                <td class="px-3 py-4">
+                                    2024-08-07
+                                </td>
+                                <td className="px-3 py-4">
+                                    Tòa nhà FPT Building, số 17 Duy Tân, Cầu Giấy, Hà Nội
+                                </td>
+                                <td className="px-3 py-4 flex gap-x-3 justify-center">
+                                    <MdOutlineRemoveRedEye size={20} color='#1c2551' className='cursor-pointer' />
+                                    <IoCheckmarkDoneCircle size={20} color='#d63434' className='cursor-pointer posts' />
+                                </td>
+                            </tr>
+
                         </tbody>
                     </table>
                 </div>

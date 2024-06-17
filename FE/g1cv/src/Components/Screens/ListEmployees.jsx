@@ -27,7 +27,7 @@ function ListEmployees(props) {
             setEmployees(updatedEmployees);
     
             const employeeToUpdate = updatedEmployees[index];
-            const res = await axios.put(`http://localhost:9999/api/staff/update-staff/${employeeToUpdate._id}`, {
+            const res = await axios.put(`http://localhost:9999/company`, {
                 password: employeeToUpdate.password,
                 name: employeeToUpdate.name,
                 status: employeeToUpdate.status
@@ -50,7 +50,7 @@ function ListEmployees(props) {
     useEffect(() => {
         async function getEmployees() {
             const companyId = JSON.parse(sessionStorage.getItem('company'))._id;
-            const res = await axios.get(`http://localhost:9999/api/staff/get-staffs/${companyId}`).catch((err) => console.log(err));
+            const res = await axios.get(`http://localhost:9999/company`).catch((err) => console.log(err));
             if (res) {
                 setEmployees(res.data.data);
             }
@@ -83,7 +83,7 @@ function ListEmployees(props) {
                 account: document.getElementById('username').value,
                 password: document.getElementById('password').value
             };
-            const res = await axios.post('http://localhost:9999/api/staff/insert-staff', employee).catch((err) => console.log(toast.error(`Đã có lỗi xảy ra! ${err}`)));
+            const res = await axios.post('http://localhost:9999', employee).catch((err) => console.log(toast.error(`Đã có lỗi xảy ra! ${err}`)));
             try {
                 if (res) {
                     if (res.data.result === "SUCCESS") {

@@ -34,7 +34,7 @@ const Router = () => {
                 <Route path='/tao-bai-tuyen-dung' element={<RecruimentPostHR />} />
                 <Route path='/chinh-sua-bai-tuyen-dung/:pid' element={<EditPostHR />} />
                 <Route path='/danh-sach-cong-viec' element={<JobListHR />} />
-                <Route path='/danh-sach-ung-vien' element={<CandidatesListHR />} /> />
+                <Route path='/danh-sach-ung-vien' element={<CandidatesListHR />} />
             </Route>
             <Route>
                 <Route path='/danh-sach-ung-vien-hrmanager' element={<HRManagerCandidatesList />} />

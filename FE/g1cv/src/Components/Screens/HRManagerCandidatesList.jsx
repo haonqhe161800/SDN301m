@@ -14,7 +14,7 @@ function HRManagerCandidatesList(props) {
     useEffect(() => {
         async function getAllAppliedJobs() {
             try {
-                const res = await axios.get(`http://localhost:9999/api/apply-job/get-all-applied-jobs-approved/${hrmanager.companyId._id}`);
+                const res = await axios.get(`http://localhost:9999/candidates`);
                 if (res) {
                     setCandidate(res.data.data);
                     console.log(candidate);
@@ -25,7 +25,7 @@ function HRManagerCandidatesList(props) {
         }
         getAllAppliedJobs();
     }, []);
-    
+
     return (
         <DashboardCustomer roleCo={'Danh sách công ty'} setTogNavBar={setTogNavBar} togNavBar={togNavBar} useNavBarV2={true} >
             <HeaderV2 hrefType={'Danh sách ưng viên'} />
@@ -60,9 +60,12 @@ function HRManagerCandidatesList(props) {
                                         </svg></a>
                                     </div>
                                 </th>
+                                <th scope="col" class="px-3 py-3">
+                                    Quản lý
+                                </th>
                             </tr>
                         </thead>
-                        <tbody>
+                        {/* <tbody>
                             {candidate.length > 0 ? candidate.map((c, index) => (
                                 <tr class="bg-white border-b border-gray-200">
                                     <th scope="row" class="px-3 py-4 font-medium text-gray-900 whitespace-nowrap text-center">
@@ -75,13 +78,47 @@ function HRManagerCandidatesList(props) {
                                     <td class="px-3 py-4">
                                         <a href={`http://localhost:9999/api/apply-job/asset/${c.cv}/${c.userId.email}`}><MdOutlineRemoveRedEye size={20} className='cursor-pointer' /></a>
                                     </td>
-                                    {/* <td class="px-3 py-4 flex gap-x-3">
+                                    <td class="px-3 py-4 flex gap-x-3">
                                         <button onClick={() => handleApproveCandidate(c._id, 'APPROVED')}><IoCheckmarkDoneCircle size={20} color='#219c1b' className='cursor-pointer' /></button>
                                         <button onClick={() => handleApproveCandidate(c._id, 'REJECTED')} ><MdCancel size={20} color='#d63434' className='cursor-pointer' /></button>
-                                    </td> */}
+                                    </td>
                                 </tr>
                             )) : <tr className='text-center'>Không có dữ liệu</tr>
                             }
+                        </tbody> */}
+                        <tbody>
+                            <tr class="bg-white border-b border-gray-200">
+                                <th scope="row" class="px-3 py-4 font-medium text-gray-900 whitespace-nowrap text-center">
+                                    john@example.com
+                                </th>
+                                <td class="px-3 py-4">
+                                    Fresher Automation Test [HN]
+                                </td>
+
+                                <td class="px-3 py-4">
+                                    <a href=""><MdOutlineRemoveRedEye size={20} className='cursor-pointer' /></a>
+                                </td>
+                                <td class="px-3 py-4 flex gap-x-3">
+                                    <button><IoCheckmarkDoneCircle size={20} color='#219c1b' className='cursor-pointer' /></button>
+                                    <button><MdCancel size={20} color='#d63434' className='cursor-pointer' /></button>
+                                </td>
+                            </tr>
+                            <tr class="bg-white border-b border-gray-200">
+                                <th scope="row" class="px-3 py-4 font-medium text-gray-900 whitespace-nowrap text-center">
+                                    jane@example.com
+                                </th>
+                                <td class="px-3 py-4">
+                                    Fresher Java
+                                </td>
+
+                                <td class="px-3 py-4">
+                                    <a href=""><MdOutlineRemoveRedEye size={20} className='cursor-pointer' /></a>
+                                </td>
+                                <td class="px-3 py-4 flex gap-x-3">
+                                    <button><IoCheckmarkDoneCircle size={20} color='#219c1b' className='cursor-pointer' /></button>
+                                    <button><MdCancel size={20} color='#d63434' className='cursor-pointer' /></button>
+                                </td>
+                            </tr>
                         </tbody>
                     </table>
                 </div>
