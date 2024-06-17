@@ -15,7 +15,7 @@ function Footer(props) {
             <div className='grid grid-rows-3 '>
                 <div className='grid lg:grid-cols-5 sm:grid-cols-1 gap-3 m-auto'>
                     <div className='flex sm:justify-center items-center lg:mr-5'>
-                        <img src={logo } alt='logo 192.png' width={100} height={100} />
+                        <img /*src={logo }*/ alt='Logo' width={100} height={100} />
                     </div>
                     <div className='reference_website flex flex-col justify-center'>
                         <p className='mb-3 text-[0.6em] font-bold text-left'>Các trang tuyển dụng khác</p>
@@ -59,7 +59,7 @@ function Footer(props) {
                         </div>
                         <div className='content_icon text-left text-[0.8em]'>
                             <p className=''>Điện thoại</p>
-                            <p className='text-[1em] font-bold'>(84 - 24) 65415877</p>
+                            <p className='text-[1em] font-bold'>(84 - 24) 987654321</p>
                         </div>
                     </div>
                     <div className='flex items-center'>
@@ -68,7 +68,7 @@ function Footer(props) {
                         </div>
                         <div className='content_icon text-left text-[0.8em]'>
                             <p className=''>Email</p>
-                            <p className='text-[1em] font-bold'>info@phuthien.com</p>
+                            <p className='text-[1em] font-bold'>info@g1cv.com</p>
                         </div>
                     </div>
                     <div className='flex items-center'>
@@ -77,7 +77,7 @@ function Footer(props) {
                         </div>
                         <div className='content_icon text-left text-[0.8em]'>
                             <p className=''>Fax</p>
-                            <p className='text-[1em] font-bold'>(84-4) 9874.6542</p>
+                            <p className='text-[1em] font-bold'>(84-4) 987654321</p>
                         </div>
                     </div>
                     <div className='flex items-center'>
@@ -92,7 +92,7 @@ function Footer(props) {
                 </div>
                 <div className='text-white text-center flex flex-col justify-end'>
                     <div className=' bg-orange-600 p-3'>
-                        <p className='tracking-wide'>©2024 Phu Thien, All Rights Reserved</p>
+                        <p className='tracking-wide'>©2024 G1CV, All Rights Reserved</p>
                     </div>
                 </div>
             </div>

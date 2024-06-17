@@ -32,7 +32,7 @@ function Header({ type, role }) {
     return (
         <header className='flex  min-[414px]:justify-between  lg:justify-evenly items-center text-white h-20 mx-auto px-4 bg-blue-950'>
             <div>
-                <img src={logo} alt='logo.png' width={50} height={50} />
+                <img /* src={ } */ alt='' width={50} height={50} />
             </div>
             <ul className='pl-2 pr-2 md:max-lg:text-sm  md:flex hidden'>
                 {type === 2 ?
@@ -44,17 +44,16 @@ function Header({ type, role }) {
                     </>
                     :
                     <>
-                        <li className='p-[1.75rem] cursor-pointer hover:bg-orange-600 ease-linear duration-200'><NavLink className={({ isActive }) => (isActive ? "border-b-4 border-orange-500" : "")}>Tuyển dụng</NavLink></li>
+                        <li className='p-[1.75rem] cursor-pointer hover:bg-orange-600 ease-linear duration-200'><NavLink to={'/'} className={({ isActive }) => (isActive ? "border-b-4 border-orange-500" : "")}>Tuyển dụng</NavLink></li>
                         <li className='p-[1.75rem] cursor-pointer hover:bg-orange-600 ease-linear duration-200'><NavLink to={'/cac-cong-ty-con'} className={({ isActive }) => (isActive ? "border-b-4 border-orange-500" : "")}>Các công ty con</NavLink></li>
                         <li className='p-[1.75rem] cursor-pointer hover:bg-orange-600 ease-linear duration-200'><NavLink to={'/co-hoi-nghe-nghiep'} className={({ isActive }) => (isActive ? "border-b-4 border-orange-500" : "")}>Cơ hội nghề nghiệp</NavLink></li>
-                        <li className='p-[1.75rem] cursor-pointer hover:bg-orange-600 ease-linear duration-200'><NavLink className={({ isActive }) => (isActive ? "border-b-4 border-orange-500" : "")}>Tư vấn</NavLink></li>
-                        <li className='p-[1.75rem] cursor-pointer hover:bg-orange-600 ease-linear duration-200'><NavLink className={({ isActive }) => (isActive ? "border-b-4 border-orange-500" : "")}>Liên hệ</NavLink></li>
+                        <li className='p-[1.75rem] cursor-pointer hover:bg-orange-600 ease-linear duration-200'><NavLink to={'/'} className={({ isActive }) => (isActive ? "border-b-4 border-orange-500" : "")}>Tư vấn</NavLink></li>
+                        <li className='p-[1.75rem] cursor-pointer hover:bg-orange-600 ease-linear duration-200'><NavLink to={'/'} className={({ isActive }) => (isActive ? "border-b-4 border-orange-500" : "")}>Liên hệ</NavLink></li>
                     </>
                 }
             </ul>
             <div className=' hidden md:hidden lg:flex md:max-lg:text-sm'>
                 {
-                    // getCurrentUser || acoountStaff ? <Authenticated /> : <NonAuthenticate />
                     <NonAuthenticate />
                 }
             </div>
@@ -76,18 +75,17 @@ function Header({ type, role }) {
                             </>
                             :
                             <>
-                                <li className='p-4  border-b hover:text-gray-900 hover:bg-orange-600 ease-linear duration-200'><NavLink className={({ isActive }) => (isActive ? "border-b-4 border-orange-500" : "")}>Tuyển dụng</NavLink></li>
-                                <li className='p-4  border-b cursor-pointer hover:bg-orange-600 ease-linear duration-200'><NavLink to={'/cac-cong-ty-con'} className={({ isActive }) => (isActive ? "border-b-4 border-orange-500" : "")}>Các công ty con</NavLink></li>
-                                <li className='p-4  border-b cursor-pointer hover:bg-orange-600 ease-linear duration-200'><NavLink to={'/co-hoi-nghe-nghiep'} className={({ isActive }) => (isActive ? "border-b-4 border-orange-500" : "")}>Cơ hội nghề nghiệp</NavLink></li>
-                                <li className='p-4  border-b cursor-pointer hover:bg-orange-600 ease-linear duration-200'><NavLink className={({ isActive }) => (isActive ? "border-b-4 border-orange-500" : "")}>Tư vấn</NavLink></li>
-                                <li className='p-4  border-b cursor-pointer hover:bg-orange-600 ease-linear duration-200'><NavLink className={({ isActive }) => (isActive ? "border-b-4 border-orange-500" : "")}>Liên hệ</NavLink></li>
+                                <li><NavLink to={'/'} className={({ isActive }) => (isActive)}>Tuyển dụng</NavLink></li>
+                                <li><NavLink to={'/cac-cong-ty-con'} className={({ isActive }) => (isActive)}>Các công ty con</NavLink></li>
+                                <li><NavLink to={'/co-hoi-nghe-nghiep'} className={({ isActive }) => (isActive)}>Cơ hội nghề nghiệp</NavLink></li>
+                                <li><NavLink className={({ isActive }) => (isActive)}>Tư vấn</NavLink></li>
+                                <li><NavLink className={({ isActive }) => (isActive)}>Liên hệ</NavLink></li>
                             </>
                     }
                 </ul>
                 <div className='flex flex-col p-4'>
-                    {
-                        type !== 2 ?
-                            <NonAuthenticate /> : <Authenticated />
+                    {type !== 2 ?
+                        <NonAuthenticate /> : <Authenticated />
                     }
                 </div>
             </div>

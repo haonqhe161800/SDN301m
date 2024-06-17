@@ -2,11 +2,13 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import backgroundImage from "../../Image/wallpaperflare.com_wallpaper.jpg";
 import backgroundImage1 from "../../Image/logo-dragon-2.png";
+import login from "../../Image/login.png";
+
 import { ToastContainer, toast } from "react-toastify";
 import "../../Styles/styles.css";
 import "react-toastify/dist/ReactToastify.css";
 
-const Login = () => {
+const ForgotPassword = () => {
     const [formData, setFormData] = useState({
         firstname: "",
         lastname: "",
@@ -63,27 +65,25 @@ const Login = () => {
         <div className="all">
             <ToastContainer />
             <div className="full-screen-image">
-                <img src={backgroundImage} alt="img" />
+                <img src={login} alt="img" />
             </div>
 
             <div className="logo">
-                <img src={backgroundImage1} alt="img" />
                 <Link to="/" className="flex items-center a">
-                    <i className="fas fa-undo mr-2"></i> Quay lại trang chủ
+                    <img alt="logo" />
                 </Link>
             </div>
 
             <div className="login-container">
                 <form onSubmit={handleSubmit}>
-                    <h2 className="mb-2 text-dark font-bold">Đăng Nhập</h2>
+                    <h2 className="mb-2 text-dark font-bold">Khôi phục mật khẩu</h2>
                     <p>
                         Tại G1CV, chúng tôi không chỉ cung cấp công việc, chúng tôi
                         tạo ra cơ hội nghề nghiệp.
                     </p>
-
                     <div className="form-group a font-bold">
-                        <label htmlFor="email">Email</label>
-                        <span className="text-red-500"> *</span>
+                        <div htmlFor="email">Email <span className="text-red-500"> *</span></div>
+                        <br />
                         <input
                             type="text"
                             className="form-control p-3"
@@ -97,8 +97,8 @@ const Login = () => {
                     </div>
 
                     <div className="form-group a font-bold">
-                        <label htmlFor="password">Mật Khẩu</label>
-                        <span className="text-red-500"> *</span>
+                        <div htmlFor="password">Mật khẩu gần nhất <span className="text-red-500"> *</span> </div>
+                        <br />
                         <input
                             type="password"
                             className="form-control p-3"
@@ -109,40 +109,15 @@ const Login = () => {
                             onChange={handleChange}
 
                         />
-                        <div className="mt-2 ">
-                            <p>
-                                <Link to="/quen-mat-khau" className="text-red-500 font-bold">
-                                    Quyên mật khẩu
-                                </Link>
-                            </p>
-                        </div>
                     </div>
-
-                    <button
-                        type="submit"
-                        className="bg-orange-500 text-white p-2 w-full rounded-md a"
-                    >
-                        Đăng Nhập
+                    <br />
+                    <button type="submit" className="bg-orange-500 text-white p-2 w-full rounded-md a">
+                        Khôi phục
                     </button>
                     <div className="mt-2 text-center">
                         <p>
-                            Bạn chưa có tài khoản?{" "}
-                            <Link to="/dang-ky" className="text-red-500 font-bold">
-                                Đăng ký ngay
-                            </Link>
-                        </p>
-                    </div>
-                    <div className="mt-2 text-center text-red-500 font-bold">
-                        <p className="">
-                            Hoặc
-                        </p>
-                    </div>
-
-                    <div className="mt-2 text-center">
-                        <p>
-                            Đăng nhập bằng {" "}
-                            <Link to="/dang-nhap-cong-ty" className="text-red-500 font-bold">
-                                Tài khoản của công ty
+                            <Link to="/dang-nhap" className="text-red-500 font-bold">
+                                Hủy
                             </Link>
                         </p>
                     </div>
@@ -152,4 +127,4 @@ const Login = () => {
     );
 };
 
-export default Login;
+export default ForgotPassword;

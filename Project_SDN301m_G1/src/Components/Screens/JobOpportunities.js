@@ -218,7 +218,6 @@ function JobOpportunities() {
 
                                                 <div className='py-4 border-b border-b-gray-700'>
                                                     <h2 className='text-[1.1em] font-semibold text-black mb-2'>Yêu cầu:</h2>
-                                                    {/* {parse(post?.candidateReq, options)} */}
                                                     {post?.candidateReq}
                                                 </div>
                                                 <div className='pt-3 pb-1'>
