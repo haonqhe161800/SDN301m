@@ -1,4 +1,3 @@
-
 import { Navigate, Route, Routes } from 'react-router-dom';
 import Register from '../Components/Screens/Register';
 import MyAccount from '../Components/Screens/MyAccount';
@@ -12,7 +11,6 @@ import LoginCompany from '../Components/Screens/LoginCompany';
 import ForgotPassword from '../Components/Screens/ForgotPassword';
 import MySaveJob from '../Components/Screens/MySaveJob';
 import CompanyFollowed from '../Components/Screens/CompanyFollowed';
-
 
 const Router = () => {
     return (

@@ -1,5 +1,5 @@
 import Default from "../Layouts/Default";
-import background from "../../Image/background.jpg";
+import background from "../../Image/home1.gif";
 import Select from "react-select";
 import { useEffect, useState } from "react";
 import Form from 'react-bootstrap/Form';
@@ -43,7 +43,7 @@ function Home() {
     return (
         <Default>
             <div className="relative">
-                <img src={background} alt="background" className="w-ful object-cover opacity-90" />
+                <img src={background} alt="background" className="w-ful object-cover opacity-200" />
                 <div className="absolute text-center bottom-0 left-[32em] translate-y-[-30%]">
                     <span className="text-5xl font-serif font-semibold text-white ">Tham gia cùng G1CV !</span>
                     <p className="text-white text-lg">Tại G1CV, chúng tôi tin rằng con người là tài sản quý báu nhất. <br />

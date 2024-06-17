@@ -1,8 +1,6 @@
 import React from 'react';
 import DashboardCustomer from '../Layouts/DashboardCustomer';
 import HeaderV2 from '../Util/Header/HeaderV2';
-import { WiTime12 } from "react-icons/wi";
-import { CiSearch } from "react-icons/ci";
 
 function CompanyFollowed(props) {
     return (

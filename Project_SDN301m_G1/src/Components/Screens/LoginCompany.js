@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import backgroundImage from "../../Image/wallpaperflare.com_wallpaper.jpg";
-import backgroundImage1 from "../../Image/logo-dragon-2.png";
+import login from "../../Image/login.png";
 import { ToastContainer, toast } from "react-toastify";
 import "../../Styles/styles.css";
 import "react-toastify/dist/ReactToastify.css";
@@ -63,13 +62,12 @@ const LoginCompany = () => {
         <div className="all">
             <ToastContainer />
             <div className="full-screen-image">
-                <img src={backgroundImage} alt="img" />
+                <img src={login} alt="img" />
             </div>
 
             <div className="logo">
-                <img src={backgroundImage1} alt="img" />
                 <Link to="/" className="flex items-center a">
-                    <i className="fas fa-undo mr-2"></i> Quay lại trang chủ
+                    <img alt="logo" />
                 </Link>
             </div>
 

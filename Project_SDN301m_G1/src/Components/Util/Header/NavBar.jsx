@@ -115,7 +115,6 @@ function NavBar({ roleCo2, setTogNavBar, togNavBar }) {
                                     </li>
                                 </ul>
                         }
-
                     </div>
                 </div>
             </div>
