@@ -1,8 +1,7 @@
-import React, { useEffect, useRef, useState } from 'react';
-import ReactQuill, { Quill } from 'react-quill';
+import React, { useEffect, useRef } from 'react';
+import ReactQuill from 'react-quill';
 import "quill/dist/quill.bubble.css";
 import { CiCirclePlus } from "react-icons/ci";
-import parse from 'html-react-parser';
 
 function CustomToolBarInline({ text, setText }) {
 

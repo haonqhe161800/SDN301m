@@ -6,7 +6,6 @@ import { BsBuildingCheck } from "react-icons/bs";
 import { FaRegChessQueen } from "react-icons/fa6";
 import { AiOutlineLogout } from "react-icons/ai";
 import { RxAvatar } from "react-icons/rx";
-import Cookies from 'js-cookie';
 import { NavLink, useNavigate } from 'react-router-dom';
 import logo from "../../../Image/logo-dragon-2.png";
 import '../../../Styles/navbar.css'
