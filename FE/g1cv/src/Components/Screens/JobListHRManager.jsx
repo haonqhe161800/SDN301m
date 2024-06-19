@@ -22,7 +22,7 @@ function JobListHRManager(props) {
         document.title = 'Danh sách công việc';
         async function getAllJobs() {
             try {
-                const res = await axios.get(`http://localhost:9999/post`).catch(err => console.log(err));
+                const res = await axios.get(`http://localhost:9999/api/post/get-posts-by-company-id/${staff.companyId._id}`).catch(err => console.log(err));
                 const data = res.data.data;
                 setPosts(data);
             } catch (error) {
@@ -104,7 +104,7 @@ function JobListHRManager(props) {
                                 </th>
                             </tr>
                         </thead>
-                        {/* <tbody>
+                        <tbody>
                             {
                                 posts && posts.map((post, index) => (
                                     <tr className="bg-white border-b border-gray-200" key={post._id}>
@@ -142,53 +142,6 @@ function JobListHRManager(props) {
                                     </tr>
                                 ))
                             }
-                        </tbody> */}
-                        <tbody>
-                            <tr className="bg-white border-b border-gray-200">
-                                <th scope="row" class="px-3 py-4 font-medium text-gray-900 whitespace-nowrap">
-                                    Fresher Automation Test [HN]
-                                </th>
-                                <td className="px-3 py-4">
-                                    6 - 8 triệu
-                                </td>
-                                <td className="px-3 py-4cursor-pointer"
-                                    style={{ color: "red" }}>
-                                    Fulfilled
-                                </td>
-                                <td class="px-3 py-4">
-                                    2024-08-07
-                                </td>
-                                <td className="px-3 py-4">
-                                    Tòa nhà FPT Building, số 17 Duy Tân, Cầu Giấy, Hà Nội
-                                </td>
-                                <td className="px-3 py-4 flex gap-x-3 justify-center">
-                                    <MdOutlineRemoveRedEye size={20} color='#1c2551' className='cursor-pointer' />
-                                    <IoCheckmarkDoneCircle size={20} color='#d63434' className='cursor-pointer posts' />
-                                </td>
-                            </tr>
-                            <tr className="bg-white border-b border-gray-200">
-                                <th scope="row" class="px-3 py-4 font-medium text-gray-900 whitespace-nowrap">
-                                    Fresher Java
-                                </th>
-                                <td className="px-3 py-4">
-                                    6 - 9 triệu
-                                </td>
-                                <td className="px-3 py-4cursor-pointer"
-                                    style={{ color: "red" }}>
-                                    Fulfilled
-                                </td>
-                                <td class="px-3 py-4">
-                                    2024-08-07
-                                </td>
-                                <td className="px-3 py-4">
-                                    Tòa nhà FPT Building, số 17 Duy Tân, Cầu Giấy, Hà Nội
-                                </td>
-                                <td className="px-3 py-4 flex gap-x-3 justify-center">
-                                    <MdOutlineRemoveRedEye size={20} color='#1c2551' className='cursor-pointer' />
-                                    <IoCheckmarkDoneCircle size={20} color='#d63434' className='cursor-pointer posts' />
-                                </td>
-                            </tr>
-
                         </tbody>
                     </table>
                 </div>
