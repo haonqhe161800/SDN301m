@@ -1,0 +1,54 @@
+{
+    "hr": [
+        {
+            "id": 1,
+            "account": "accounthrFPT",
+            "password": "12345678",
+            "role": "HRManager"
+        }
+    ],
+    "company": [
+        {
+            "id": "1",
+            "taxCode": "0101601092",
+            "account": "fptSoftware",
+            "password": "123456789",
+            "email": "fptSoftware@example.com",
+            "name": "CÔNG TY TNHH  PHẦN MỀM FPT",
+            "bio": "FPT Software là công ty thành viên thuộc Tập đoàn FPT. Được thành lập từ năm 1999, FPT Software hiện là công ty chuyên cung cấp các dịch vụ và giải pháp phần mềm cho các khách hàng quốc tế, với hơn 28000 nhân viên, hiện diện tại 27 quốc gia trên toàn cầu. Nhiều năm liền, FPT Software được bình chọn là Nhà Tuyển dụng được yêu thích nhất và nằm trong TOP các công ty có môi trường làm việc tốt nhất châu Á.",
+            "phone": "024 7304 4888",
+            "location": "Tòa nhà FPT Cầu Giấy, phố Duy Tân, Phường Dịch Vọng Hậu, Quận Cầu Giấy, Thành phố Hà Nội, Việt Nam",
+            "createdAt": "2024-02-24T11:19:07.742Z",
+            "updatedAt": "2024-02-24T11:19:07.742Z"
+        }
+    ],
+    "post": [
+        {
+            "id": 1,
+            "HRId": 1,
+            "companyId": 1,
+            "jobCategory": "Automation Test",
+            "status": "Fulfilled",
+            "title": "Fresher Automation Test [HN]",
+            "jobDescription": "Tham gia chương trình Đào tạo tân binh chuyên sâu trong trong 03 tháng về Automation Test giúp bạn sẽ trở thành một chuyên viên Kiểm thử phần mềm tự động chuyên nghiệp, được trang bị đầy đủ kiến thức cơ bản, nâng cao để đáp ứng yêu cầu đầu vào vị trí Automation Tester tại các dự án phần mềm lớn.",
+            "salary": "6 - 8 triệu",
+            "candidateReq": "<ul><li>Dưới 1 năm</li></ul>",
+            "location": "Tòa nhà FPT Building, số 17 Duy Tân, Cầu Giấy, Hà Nội",
+            "deadline": "2024-08-07T17:00:00.000Z",
+            "createdAt": "2024-02-24T17:58:18.874Z",
+            "updatedAt": "2024-02-24T17:58:18.874Z"
+        }
+    ],
+    "candidates": [
+        {
+            "id": 1,
+            "name": "John Doe",
+            "email": "john@example.com",
+            "phone": "123456789",
+            "address": "123 Main St",
+            "status": "CV Passed",
+            "cv": "Lorem ipsum dolor sit amet...",
+            "cvStatus": "Accepted "
+          }
+    ]
+}
