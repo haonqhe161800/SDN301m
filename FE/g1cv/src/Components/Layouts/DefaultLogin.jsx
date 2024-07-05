@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Link, useNavigate } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import backgroundImage from "../../Image/wallpaperflare.com_wallpaper.jpg";
 import backgroundCo from "../../Image/ImageCo.png"
 import backgroundImage1 from "../../Image/logo-dragon-2.png";
@@ -86,9 +86,12 @@ function DefaultLogin({ resetEmail, setRestEmail, setButtonLogin, openConfirmati
                             required
                         />
                     </div>
-                    <div className="mb-3 font-bold">
+                    <div className="mb-3 font-bold flex justify-between">
                         <Link href="#" onClick={openModal} className="forget text-orange-500">
                             Quên mật khẩu?
+                        </Link>
+                        <Link to="/nhan-vien/dang-nhap" className="forget text-orange-500">
+                            Đăng nhập với tư cách HR
                         </Link>
                     </div>
 

@@ -30,7 +30,20 @@ function JobListHRManager(props) {
             }
         }
         getAllJobs();
-    }, [posts])
+    }, [])
+
+    function updatePost(id) {
+        nativigation(`/chinh-sua-bai-tuyen-dung/${id}`);
+    }
+
+    function deletePost(id) {
+        axios.delete(`http://localhost:9999/api/post/delete-post-by-id/${id}`).then(res => {
+            if (res.status === 200) {
+                const newPosts = posts.filter(post => post._id !== id);
+                setPosts(newPosts);
+            }
+        }).catch(err => console.log(err));
+    }
 
     function formatDate(date) {
         const year = date.getFullYear();
@@ -41,6 +54,31 @@ function JobListHRManager(props) {
 
         return `${day}/${month}/${year}`;
     }
+
+    const handleEdit = async (postId, value) => {
+        try {
+            const res = await axios.put(`http://localhost:9999/api/post/accept-post`, {
+                id: postId,
+                statusPost: value,
+            });
+
+            console.log(res.data.status);
+            if (res.data.status === "accepted") {
+                window.alert('Cập nhật trạng thái bài viết hiển thị');
+            } else if (res.data.status = "Pending") {
+                window.alert('Cập nhật trạng thái bài viết chờ');
+            } else {
+                window.alert('Cập nhật trạng thái bài viết loại');
+            }
+
+            const ress = await axios.get(`http://localhost:9999/api/post/get-posts-by-company-id/${staff.companyId._id}`).catch(err => console.log(err));
+            const data = ress.data.data;
+            setPosts(data);
+        } catch (error) {
+            toast.error('Đã có lỗi xảy ra trong quá trình thay đổi trạng thái bài viết');
+            console.error(error);
+        }
+    };
 
     function getColorForStatus(status) {
         switch (status) {
@@ -58,19 +96,16 @@ function JobListHRManager(props) {
     return (
         <DashboardCustomer roleCo={'Danh sách công ty'} setTogNavBar={setTogNavBar} togNavBar={togNavBar} useNavBarV2={true} >
             <HeaderV2 hrefType={'Xem bài viết'} />
-            <section id='section-header' className='bg-gradient-to-r from-[#4973CE] to-[#47BDE1] text-gray-200'>
+            <section id='section-header' className=' bg-gradient-to-r from-[#4973CE] to-[#47BDE1] text-gray-200'>
                 <div className='pl-[9em] py-16'>
                     <Breadcrumb text1={'Trang chủ'} text2={'Danh sách công việc'} />
-                    <div className='flex items-center justify-between py-3'>
-                        <h2 className='text-[2em] font-semibold leading-7'>Danh sách công việc</h2>
-                        <button className='ml-4 mr-[100px] px-4 py-3 bg-gradient-to-r from-[#3B5CA8] to-[#3EA6CC] text-white font-bold rounded'>Tạo bài viết mới</button>
-                    </div>
+                    <h2 className='text-[2em] font-semibold leading-7 py-3'>Danh sách công việc</h2>
                     <p className='text-[0.8em] font-thin'>Tại Nodejs, chúng tôi không chỉ cung cấp công việc, chúng tôi tạo ra cơ hội nghề nghiệp</p>
                 </div>
             </section>
             <section id='list-feature-jobs' className='grid lg:grid-cols-1 gap-9 sm:w-[509px] lg:w-[1290px] mx-auto mt-5 mb-5'>
                 <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
-                    {/* <Link to={'/tao-bai-tuyen-dung'}><div className='text-end my-2  '><button className='p-2 rounded-sm text-white bg-orange-600'>Tạo bài tuyển dụng</button></div></Link> */}
+                    <Link to={'/tao-bai-tuyen-dung'}><div className='text-end my-2  '><button className='p-2 rounded-sm text-white bg-orange-600'>Tạo bài tuyển dụng</button></div></Link>
                     <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
                         <thead class="text-xs text-white uppercase bg-gradient-to-r from-[#4973CE] to-[#47BDE1]">
                             <tr>
@@ -119,6 +154,7 @@ function JobListHRManager(props) {
 
                                             {editingIndex === index ? (
                                                 <select
+                                                    onChange={(e) => handleEdit(post._id, e.target.value)}
                                                     className="border border-gray-300 rounded px-2 py-1 focus:outline-none focus:border-blue-500"
                                                 >
                                                     <option value='accepted' style={{ color: "green" }} selected={post.status === 'accepted'}>Accepted</option>
@@ -136,8 +172,8 @@ function JobListHRManager(props) {
                                             {post.location}
                                         </td>
                                         <td className="px-3 py-4 flex gap-x-3 justify-center">
-                                            <MdOutlineRemoveRedEye size={20} color='#1c2551' className='cursor-pointer'/>
-                                            <IoCheckmarkDoneCircle size={20} color='#d63434' className='cursor-pointer posts'/>
+                                            <MdOutlineRemoveRedEye size={20} color='#1c2551' className='cursor-pointer' onClick={() => updatePost(post._id)} />
+                                            <IoCheckmarkDoneCircle size={20} color='#d63434' className='cursor-pointer posts' onClick={() => deletePost(post._id)} />
                                         </td>
                                     </tr>
                                 ))
