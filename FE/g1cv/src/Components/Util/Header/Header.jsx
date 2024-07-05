@@ -36,7 +36,7 @@ function Header({ type, role }) {
 
 
     return (
-        <header className='flex  min-[414px]:justify-between  lg:justify-evenly items-center text-white h-20 mx-auto px-4 bg-blue-950'>
+        <header className='flex  min-[414px]:justify-between  lg:justify-evenly items-center text-white h-20 mx-auto px-4 bg-gradient-to-r from-[#FF622F] to-[#4b0080]'>
             <div>
                 <img src={logo} alt='logo.png' width={50} height={50} />
             </div>
