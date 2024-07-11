@@ -127,13 +127,7 @@ async function updatePost(req, res) {
     }
 }
 
-/**
- * @author Dương Thành Luân
- * @date 27/02/2024
- * @param {*} req 
- * @param {*} res 
- * @returns 
- */
+
 async function getPostsByTitle(req, res) {
     const { title } = req.params;
     const { userId } = req.body;

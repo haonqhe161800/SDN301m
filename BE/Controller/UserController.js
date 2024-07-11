@@ -165,13 +165,7 @@ const loginUser = async (req, res) => {
 };
 
 
-/**
- * @author Dương Thành Luân
- * @description Cho người dùng đăng kí công việc
- * @param {*} req 
- * @param {*} res 
- * @returns 
- */
+
 const applyJob = async (req, res) => {
     const { userId, postId } = req.body;
     try {

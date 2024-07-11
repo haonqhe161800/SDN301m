@@ -53,14 +53,8 @@ async function getStaffsByCompanyId(req, res) {
     }
 }
 
-/**
- * @des Thêm nhân viên vào công ty
- * @author Dương Thành Luân
- * @date 2024-01-26
- * @param {*} req 
- * @param {*} res 
- * @returns 
- */
+
+
 async function insertStaff(req, res) {
     const { account, password, companyId, role, status, name } = req.body;
     try {
