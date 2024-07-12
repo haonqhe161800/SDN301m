@@ -54,7 +54,7 @@ function Footer(props) {
                 </div>
                 <div className='grid sm:gap-10  md:grid-cols-1  lg:grid-cols-4 row-span-2 lg:gap-16 m-auto'>
                     <div className='flex items-center'>
-                        <div className='icon-phone p-2.5 mr-1 bg-orange-600 rounded-full text-white'>
+                        <div className='icon-phone p-2.5 mr-1 bg-orange-600 rounded-full text-white bg-gradient-to-r from-[#FF622F] to-[#4B0080]'>
                             <FiPhoneCall size={15} />
                         </div>
                         <div className='content_icon text-left text-[0.8em]'>
@@ -63,7 +63,7 @@ function Footer(props) {
                         </div>
                     </div>
                     <div className='flex items-center'>
-                        <div className='icon-email p-2.5 mr-1 bg-orange-600 rounded-full text-white'>
+                        <div className='icon-email p-2.5 mr-1 bg-orange-600 rounded-full text-white bg-gradient-to-r from-[#FF622F] to-[#4B0080]'>
                             <MdOutlineEmail size={15} />
                         </div>
                         <div className='content_icon text-left text-[0.8em]'>
@@ -72,7 +72,7 @@ function Footer(props) {
                         </div>
                     </div>
                     <div className='flex items-center'>
-                        <div className='icon-fax p-2.5 mr-1 bg-orange-600 rounded-full text-white'>
+                        <div className='icon-fax p-2.5 mr-1 bg-orange-600 rounded-full text-white bg-gradient-to-r from-[#FF622F] to-[#4B0080]'>
                             <FaFax size={15} />
                         </div>
                         <div className='content_icon text-left text-[0.8em]'>
@@ -81,7 +81,7 @@ function Footer(props) {
                         </div>
                     </div>
                     <div className='flex items-center'>
-                        <div className='icon-phone p-2.5 mr-1 bg-orange-600 rounded-full text-white'>
+                        <div className='icon-phone p-2.5 mr-1 bg-orange-600 rounded-full text-white bg-gradient-to-r from-[#FF622F] to-[#4B0080]'>
                             <CiLocationOn size={15} />
                         </div>
                         <div className='content_icon text-left text-[0.8em]'>
@@ -91,7 +91,7 @@ function Footer(props) {
                     </div>
                 </div>
                 <div className='text-white text-center flex flex-col justify-end'>
-                    <div className=' bg-orange-600 p-3'>
+                    <div className=' bg-orange-600 p-3 bg-gradient-to-r from-[#FF622F] to-[#4B0080]'>
                         <p className='tracking-wide'>©2024 All Rights Reserved</p>
                     </div>
                 </div>

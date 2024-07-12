@@ -1,5 +1,3 @@
-
-
 import React, { useState } from 'react';
 import ReactPaginate from 'react-paginate';
 import '../../Styles/paginationStyle.css'

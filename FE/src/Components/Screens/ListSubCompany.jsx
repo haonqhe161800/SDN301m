@@ -51,7 +51,7 @@ function ListSubCompany(props) {
                 <div className='pl-[9em] py-16'>
                     <Breadcrumb text1={'Trang chủ'} text2={'Các công ty con'} />
                     <h2 className='text-[2em] font-semibold leading-7 py-3'>Các công ty thành viên</h2>
-                    <p className='text-[0.8em] font-thin'>Tại Nodejs, chúng tôi không chỉ cung cấp công việc, chúng tôi tạo ra cơ hội nghề nghiệp</p>
+                    <p className='text-[0.8em] font-thin'>Tại G1CV, chúng tôi không chỉ cung cấp công việc, chúng tôi tạo ra cơ hội nghề nghiệp</p>
                 </div>
             </section>
             <section id='list-feature-jobs' className='grid lg:grid-cols-3 gap-9 sm:w-[1166px] lg:w-[1357px] mx-auto mt-5 mb-5'>

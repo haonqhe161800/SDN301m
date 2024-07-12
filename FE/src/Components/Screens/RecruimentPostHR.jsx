@@ -50,6 +50,7 @@ function RecruimentPostHR(props) {
 
     async function handlePost(e) {
         e.preventDefault();
+        console.log(staff);
         const post = {
             HRId: staff._id,
             companyId: staff.companyId._id,
@@ -88,7 +89,7 @@ function RecruimentPostHR(props) {
                 <div className='pl-[9em] py-16'>
                     <Breadcrumb text1={'Trang chủ'} text2={'Danh sách công việc'} text3={'Tạo mới công việc'} />
                     <h2 className='text-[2em] font-semibold leading-7 py-3'>Tạo mới công việc</h2>
-                    <p className='text-[0.8em] font-thin'>Tại Nodejs, chúng tôi không chỉ cung cấp công việc, chúng tôi tạo ra cơ hội nghề nghiệp</p>
+                    <p className='text-[0.8em] font-thin'>Tại G1CV, chúng tôi không chỉ cung cấp công việc, chúng tôi tạo ra cơ hội nghề nghiệp</p>
                 </div>
             </section>
             <section className='grid lg:grid-cols-3 gap-4 sm:w-[509px] lg:w-[1386px] mx-auto mt-5 mb-5'>
@@ -180,7 +181,7 @@ function RecruimentPostHR(props) {
                                 </div>
                                 <div className='content_icon text-left text-[0.8em]'>
                                     <p className=''>Điện thoại</p>
-                                    <p className='text-[1em] font-bold'>(84 - 24) 66526332 {' - '} <span>Lê Thành An</span></p>
+                                    <p className='text-[1em] font-bold'>(84 - 24) 66526332 {' - '} <span>Dương Thế Toàn</span></p>
                                 </div>
                             </div>
                             <div className='flex items-center'>
@@ -189,7 +190,7 @@ function RecruimentPostHR(props) {
                                 </div>
                                 <div className='content_icon text-left text-[0.8em]'>
                                     <p className=''>Điện thoại</p>
-                                    <p className='text-[1em] font-bold'>(84 - 24) 66526332 {' - '} <span>Dương Thành Luân</span></p>
+                                    <p className='text-[1em] font-bold'>(84 - 24) 66526332 {' - '} <span>Nguyễn Quang Hào</span></p>
                                 </div>
                             </div>
                             <div className='flex items-center'>
@@ -198,7 +199,7 @@ function RecruimentPostHR(props) {
                                 </div>
                                 <div className='content_icon text-left text-[0.8em]'>
                                     <p className=''>Điện thoại</p>
-                                    <p className='text-[1em] font-bold'>(84 - 24) 66526332 {' - '} <span>Ngô Hữu Nam</span></p>
+                                    <p className='text-[1em] font-bold'>(84 - 24) 66526332 {' - '} <span>Nguyễn Tiến Anh</span></p>
                                 </div>
                             </div>
                             <div className='flex items-center'>

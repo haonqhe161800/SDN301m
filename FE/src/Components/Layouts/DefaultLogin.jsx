@@ -53,7 +53,7 @@ function DefaultLogin({ resetEmail, setRestEmail, setButtonLogin, openConfirmati
                             <p>Bạn đang đăng nhập bằng tài khoản của công ty,
                                 hãy nhập e-mail và mật khẩu để tiếp tục</p>
                             : <p>
-                                Tại Nodejs, chúng tôi không chỉ cung cấp công việc, chúng tôi
+                                Tại G1CV, chúng tôi không chỉ cung cấp công việc, chúng tôi
                                 tạo ra cơ hội nghề nghiệp.
                             </p>
                     }
