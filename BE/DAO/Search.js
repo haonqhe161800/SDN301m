@@ -1,4 +1,4 @@
-const Post = require("../Model/Post.js").Post;
+const Post = require("../Model/Post.model").Post;
 
 class PostData {
     constructor(post, priority) {

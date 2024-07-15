@@ -1,4 +1,4 @@
-const Company = require("../Model/Company.js").Company;
+const Company = require("../Model/Company.model").Company;
 
 async function updateCompany(companyId, status) {
     const company = await Company.findOneAndUpdate({_id: companyId}, {vip: status}, {new: true}).exec();

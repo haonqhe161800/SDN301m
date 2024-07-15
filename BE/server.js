@@ -1,56 +1,80 @@
-const connect = require("./Connection/DBConnection.js").connect;
-const express = require('express');
-const UserRouter = require("./Routers/UserRouter.js").UserRouter;
-const bodyParser = require('body-parser');
-const PostRouter = require("./Routers/PostRouter.js").PostRouter;
-const notificationRouter = require("./Routers/NotificationRouter.js");
-const ReportRouter = require('./Routers/ReportRouter.js');
+require("dotenv").config();
+const express = require("express");
+const morgan = require("morgan");
+const httpErrors = require("http-errors");
+const bodyParser = require("body-parser");
+const cors = require("cors");
+
+const db = require('./Model/index.js');
+
 const authenToken = require('./Middleware/AuthenToken.js');
-const CompanyRouter = require('./Routers/CompanyRouter.js').CompanyRouter;
-const hrManagerRouter = require("./Routers/HrManagerRouter.js");
-const modRouter = require("./Routers/ModRouter.js");
-const hrRouter = require("./Routers/HrRouter.js");
-const dotenv = require('dotenv');
-const cors = require('cors');
-const StaffRouter = require('./Routers/StaffRouter.js');
-const JobCategoryRouter = require('./Routers/JobCategoryRouter.js');
-const HrManagerRouter = require("./Routers/HrManagerRouter.js");
 const server = require('./Service/SocketIO.js').server;
-const ApplyJobRouter = require("./Routers/ApplyJobController.js").ApplyJobRouter;
 
-dotenv.config();
+const applyJobRouter = require('./Routes/ApplyJob.route.js');
+const chatRouter = require('./Routes/Chat.route.js');
+const companyRouter = require('./Routes/Company.route.js');
+const hrRouter = require('./Routes/Hr.route.js');
+const hrManagerRouter = require('./Routes/HrManager.route.js');
+const jobCategoryRouter = require('./Routes/JobCategory.route.js');
+const modRouter = require('./Routes/Mod.route.js');
+const notificationRouter = require('./Routes/Notification.route.js');
+const paymentRouter = require('./Routes/Payment.route.js');
+const postRouter = require('./Routes/Post.route.js');
+const reportRouter = require('./Routes/Report.route.js');
+const staffRouter = require('./Routes/Staff.route.js');
+const userRouter = require('./Routes/User.route.js');
+
 const app = express();
-const port = 9999;
-const serverPort = 8080;
-app.use(cors())
 
-//Setup body parser
+app.use(cors());
+app.use(morgan("dev"));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
+app.get("/", (req, res) => {
+    res.status(200).json({
+        message: "Welcome to RESTFull API G1CV",
+    });
+});
 
-//Connect to DB
-connect();
-//Get router
-app.use('/api/user', UserRouter);
-app.use('/api/post', PostRouter);
-app.use('/api/report', ReportRouter);
-app.use('/api/company', CompanyRouter)
-app.use('/api/staff', StaffRouter)
-app.use('/api/job-category', JobCategoryRouter)
-app.use('/api/hr-manager', HrManagerRouter)
-//Nhan thong bao
-app.use('/api/notifications', notificationRouter);
-
-app.get('/api/protected', authenToken, (req, res) => {
-    res.send("hello world")
-})
-
-app.use('/api/apply-job', ApplyJobRouter);
-
+app.use('/api/user', userRouter);
+app.use('/api/post', postRouter);
+app.use('/api/report', reportRouter);
+app.use('/api/company', companyRouter);
+app.use('/api/staff', staffRouter);
+app.use('/api/job-category', jobCategoryRouter);
+app.use('/api/hr-manager', hrManagerRouter);
+app.use('/api/notifications', notificationRouter); //Nhan thong bao
+app.use('/api/messages', chatRouter); //Chat HR
+app.use('/api/payment', paymentRouter); //Payment VNPAY
+app.use('/api/apply-job', applyJobRouter);
 app.use('/api/hr', hrRouter);
 app.use('/api/mod', modRouter);
 
-app.listen(port, () => {
-    console.log(`Example app listening at http://localhost:${port}`);
+app.get('/api/protected', authenToken, (req, res) => {
+    res.send("hello world");
+});
+
+app.use(async (req, res, next) => {
+    next(httpErrors.NotFound());
+});
+
+app.use((err, req, res, next) => {
+    res.status(err.status || 500);
+    res.send({
+        error: {
+            status: err.status || 500,
+            message: err.message
+        }
+    });
+});
+
+// Socket IO - Xử lí tin nhắn
+server.listen(process.env.SERVER_PORT, () => {
+    console.log(`Server is running on port ${process.env.SERVER_PORT}`);
+});
+
+app.listen(process.env.PORT, process.env.HOST_NAME, () => {
+    console.log(`Server is running at: http://${process.env.HOST_NAME}:${process.env.PORT}`);
+    db.connectDB();
 });
