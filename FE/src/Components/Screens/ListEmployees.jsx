@@ -106,7 +106,7 @@ function ListEmployees(props) {
             <main className='relative'>
                 <div className='info-pageCurrent pt-16 pl-10'>
                     <h2 className="text-[2em] font-bold leading-7 text-gray-700">Danh sách nhân viên</h2>
-                    <p class="mt-3 text-[0.8em] leading-6 text-gray-600 w-[27%]">Tại NodeJS, chúng tôi không chỉ cung cấp công việc, chúng tôi tạo ra cơ hội nghề nghiệp.</p>
+                    <p class="mt-3 text-[0.8em] leading-6 text-gray-600 w-[27%]">Tại G1CV, chúng tôi không chỉ cung cấp công việc, chúng tôi tạo ra cơ hội nghề nghiệp.</p>
                 </div>
                 <section id='list-feature-jobs' className={`grid lg:grid-cols-4  gap-9 sm:w-[509px] mx-auto mt-5 mb-5 ease-in-out duration-500 ${togNavBar === 'Close' ? " lg:w-[1373px]" : "lg:w-[1166px]"}`}>
                     <div className='groupFilter hidden bg-red-250 row-span-6 md:hidden lg:block'>
@@ -137,14 +137,14 @@ function ListEmployees(props) {
                                                 <label for="candidates" className="font-medium text-gray-900">HR</label>
                                             </div>
                                         </div>
-                                        <div className="relative flex gap-x-3">
+                                        {/* <div className="relative flex gap-x-3">
                                             <div className="flex h-6 items-center">
                                                 <input id="faas" name="faas" type="checkbox" className="h-4 w-4 rounded border-gray-300" />
                                             </div>
                                             <div className="text-sm leading-6">
                                                 <label for="faas" className="font-medium text-gray-900">HR Manager</label>
                                             </div>
-                                        </div>
+                                        </div> */}
                                     </div>
                                 </fieldset>
                             </div>

@@ -51,7 +51,7 @@ function Home() {
     return (
         <Default>
             <div className="relative">
-                <img src={background} alt="background" className="w-ful object-cover opacity-90" />
+                <img src={background} alt="background" className="w-ful object-cover opacity-200" />
                 <div className="absolute text-center bottom-0 left-[32em] translate-y-[-30%]">
                     <span className="text-5xl font-serif font-semibold text-white ">Tham gia cùng G1CV !</span>
                     <p className="text-white text-lg">Tại G1CV, chúng tôi tin rằng con người là tài sản quý báu nhất. <br />
@@ -120,7 +120,7 @@ function Home() {
                         <div>Địa điểm: <span className="font-bold">Hưng Yên</span></div>
                         <div>
                             <button className="text-white bg-[#141a45ff] rounded-md px-5 py-2 m-2">Chi tiết</button>
-                            <button className="text-white bg-[#f25b29ff] rounded-md px-4 py-2 m-2"> Ứng tuyển</button>
+                            <button className="text-white bg-[#f25b29ff] rounded-md px-4 py-2 m-2 bg-gradient-to-r from-[#FF622F] to-[#4B0080]"> Ứng tuyển</button>
                         </div>
                     </div>
                 </div>
@@ -145,7 +145,7 @@ function Home() {
                         <div>Địa điểm: <span className="font-bold">Hưng Yên</span></div>
                         <div>
                             <button className="text-white bg-[#141a45ff] rounded-md px-5 py-2 m-2">Chi tiết</button>
-                            <button className="text-white bg-[#f25b29ff] rounded-md px-4 py-2 m-2"> Ứng tuyển</button>
+                            <button className="text-white bg-[#f25b29ff] rounded-md px-4 py-2 m-2 bg-gradient-to-r from-[#FF622F] to-[#4B0080]"> Ứng tuyển</button>
                         </div>
                     </div>
                 </div>
@@ -170,7 +170,7 @@ function Home() {
                         <div>Địa điểm: <span className="font-bold">Hưng Yên</span></div>
                         <div>
                             <button className="text-white bg-[#141a45ff] rounded-md px-5 py-2 m-2">Chi tiết</button>
-                            <button className="text-white bg-[#f25b29ff] rounded-md px-4 py-2 m-2"> Ứng tuyển</button>
+                            <button className="text-white bg-[#f25b29ff] rounded-md px-4 py-2 m-2 bg-gradient-to-r from-[#FF622F] to-[#4B0080]"> Ứng tuyển</button>
                         </div>
                     </div>
                 </div>
@@ -199,7 +199,7 @@ function Home() {
                         <div>Địa điểm: <span className="font-bold">Hưng Yên</span></div>
                         <div>
                             <button className="text-white bg-[#141a45ff] rounded-md px-5 py-2 m-2">Chi tiết</button>
-                            <button className="text-white bg-[#f25b29ff] rounded-md px-4 py-2 m-2"> Ứng tuyển</button>
+                            <button className="text-white bg-[#f25b29ff] rounded-md px-4 py-2 m-2 bg-gradient-to-r from-[#FF622F] to-[#4B0080]"> Ứng tuyển</button>
                         </div>
                     </div>
                 </div>
@@ -222,7 +222,7 @@ function Home() {
                     <div className="mt-auto flex-shrink-0 border-t-2">
                         <div>
                             <button className="text-white small bg-[#141a45ff] rounded-md px-4 py-2 m-2 w-[45%]">Tìm hiểu thêm</button>
-                            <button className="text-white small bg-[#f25b29ff] rounded-md px-4  py-2 m-2 w-[45%]"> Cơ hội việc làm</button>
+                            <button className="text-white small bg-[#f25b29ff] rounded-md px-4  py-2 m-2 w-[45%] bg-gradient-to-r from-[#FF622F] to-[#4B0080]"> Cơ hội việc làm</button>
                         </div>
                     </div>
                 </div>
@@ -237,7 +237,7 @@ function Home() {
                     <div className="mt-auto flex-shrink-0 border-t-2">
                         <div>
                             <button className="text-white small bg-[#141a45ff] rounded-md px-4 py-2 m-2 w-[45%]">Tìm hiểu thêm</button>
-                            <button className="text-white small bg-[#f25b29ff] rounded-md px-4  py-2 m-2 w-[45%]"> Cơ hội việc làm</button>
+                            <button className="text-white small bg-[#f25b29ff] rounded-md px-4  py-2 m-2 w-[45%] bg-gradient-to-r from-[#FF622F] to-[#4B0080]"> Cơ hội việc làm</button>
                         </div>
                     </div>
                 </div>
@@ -252,7 +252,7 @@ function Home() {
                     <div className="mt-auto flex-shrink-0 border-t-2">
                         <div>
                             <button className="text-white small bg-[#141a45ff] rounded-md px-4 py-2 m-2 w-[45%]">Tìm hiểu thêm</button>
-                            <button className="text-white small bg-[#f25b29ff] rounded-md px-4  py-2 m-2 w-[45%]"> Cơ hội việc làm</button>
+                            <button className="text-white small bg-[#f25b29ff] rounded-md px-4  py-2 m-2 w-[45%] bg-gradient-to-r from-[#FF622F] to-[#4B0080]"> Cơ hội việc làm</button>
                         </div>
                     </div>
                 </div>

@@ -3,11 +3,27 @@ import { TbBellRinging } from "react-icons/tb";
 import { TbBellRingingFilled } from "react-icons/tb";
 import { useSelector } from 'react-redux';
 import axios from 'axios';  
+import { Link, useNavigate } from "react-router-dom";
+import { useDispatch } from 'react-redux';
+import { clearUser } from '../../../Store/userSlice';
 
 function Authenticated() {
     const [notificate, setNotificate] = useState(false);
+    const [accountDropDown, setAccountDropDown] = useState(false);
     const [notifications, setNotifications] = useState([]);
     const getCurrentUser = useSelector((state) => state.users.currentUser);
+    const navigate = useNavigate();
+    const dispatch = useDispatch();
+
+    function handleSignOut(e) {
+        e.preventDefault();
+        sessionStorage.removeItem('staff');
+        sessionStorage.removeItem('HRManager');
+        sessionStorage.removeItem('company');
+        sessionStorage.removeItem('user');
+        dispatch(clearUser());
+        navigate('/');
+    }
 
     useEffect(() => {
          
@@ -26,6 +42,9 @@ function Authenticated() {
     }, []);  
     const handleNotificate = () => {
         setNotificate(!notificate);
+    }
+    const handleAccountDropDown = () => {
+        setAccountDropDown(!accountDropDown);
     }
     return (
         <>
@@ -51,11 +70,49 @@ function Authenticated() {
 
             </div>
 
-            <div className=" flex items-center avatar-info ml-3 cursor-pointer">
+            <div className="flex items-center avatar-info ml-3 cursor-pointer" onClick={handleAccountDropDown}>
                 <div className=' rounded-full bg-slate-600 mr-2'>
                     <img src={`${getCurrentUser?.avatar || '/logo192.png'}`} alt='avatar.png' width={30} height={30} />
                 </div>
                 <span className='text-sm'>{getCurrentUser?.username}</span>
+                <div className="notification mr-3 relative">
+                    <div className={accountDropDown ? 'accdrop-list show text-black' : 'accdrop-list'}>
+                        <ul className="text-black text-[0.8rem]">
+                            <li className="">
+                                { getCurrentUser?.taxcode != null ? 
+                                    <div className="">
+                                        <Link to={'/ho-so-cong-ty'}><div className="bg-red-500  p-3 border-b-2 border-white text-white">Trang Quản Lý</div></Link>
+                                        <div onClick={e => handleSignOut(e)} className="bg-white-500  p-3 border-b-2 border-white text-black">Đăng Xuất</div>
+                                    </div>
+                                : 
+                                    getCurrentUser?.role === "HRManager"  ?
+
+                                    <div className="">
+                                        <Link to={'/danh-sach-ung-vien-hrmanager'}><div className="bg-red-500  p-3 border-b-2 border-white text-white">HRManager</div></Link>
+                                        <Link to={'/danh-sach-cong-viec-hrmanager'}><div className="bg-red-500  p-3 border-b-2 border-white text-white">HRManager</div></Link>
+                                        <div onClick={e => handleSignOut(e)} className="bg-white-500  p-3 border-b-2 border-white text-black">Đăng Xuất</div>
+                                    </div>
+                                :
+                                    getCurrentUser?.role === "HR"  ?
+
+                                    <div className="">
+                                        <Link to={'/tao-bai-tuyen-dung'}><div className="bg-red-500  p-3 border-b-2 border-white text-white">HR</div></Link>
+                                        <Link to={'/danh-sach-cong-viec'}><div className="bg-red-500  p-3 border-b-2 border-white text-white">HR</div></Link>
+                                        <Link to={'/danh-sach-ung-vien'}><div className="bg-red-500  p-3 border-b-2 border-white text-white">HR</div></Link>
+                                        <div onClick={e => handleSignOut(e)} className="bg-white-500  p-3 border-b-2 border-white text-black">Đăng Xuất</div>
+                                    </div>
+                                :
+                                    <div className="">
+                                        <Link to={'/tai-khoan'}><div className="bg-red-500  p-3 border-b-2 border-white text-white">Trang Quản Lý</div></Link>
+                                        <div onClick={e => handleSignOut(e)} className="bg-white-500  p-3 border-b-2 border-white text-black">Đăng Xuất</div>
+                                    </div>
+                                }
+                                
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                
             </div>
         </>
     );

@@ -5,8 +5,6 @@ const bodyParser = require('body-parser');
 const PostRouter = require("./Routers/PostRouter.js").PostRouter;
 const notificationRouter = require("./Routers/NotificationRouter.js");
 const ReportRouter = require('./Routers/ReportRouter.js');
-const chatRouter = require('./Routers/ChatRouter.js');
-const paymentRouter = require('./Routers/PaymentRouter.js');
 const authenToken = require('./Middleware/AuthenToken.js');
 const CompanyRouter = require('./Routers/CompanyRouter.js').CompanyRouter;
 const hrManagerRouter = require("./Routers/HrManagerRouter.js");
@@ -43,10 +41,6 @@ app.use('/api/job-category', JobCategoryRouter)
 app.use('/api/hr-manager', HrManagerRouter)
 //Nhan thong bao
 app.use('/api/notifications', notificationRouter);
-//Chat HR
-app.use('/api/messages', chatRouter);
-//Payment VNPAY
-app.use('/api/payment', paymentRouter);
 
 app.get('/api/protected', authenToken, (req, res) => {
     res.send("hello world")
@@ -55,13 +49,7 @@ app.get('/api/protected', authenToken, (req, res) => {
 app.use('/api/apply-job', ApplyJobRouter);
 
 app.use('/api/hr', hrRouter);
-app.use('/api/apply-job', ApplyJobRouter);
 app.use('/api/mod', modRouter);
-
-//Socket IO - Xử lí tin nhắn
-server.listen(serverPort, () => {
-    console.log(`Server is running on port ${serverPort}`);
-});
 
 app.listen(port, () => {
     console.log(`Example app listening at http://localhost:${port}`);

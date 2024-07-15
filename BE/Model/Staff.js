@@ -3,7 +3,7 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const StaffSchema = new Schema({
-    account: {type: String, required: true, max: 200, uniquie: true},
+    account: {type: String, required: true, max: 200, unique: true},
     password: {type: String, required: true, max: 200},
     name: {type: String, required: true, max: 200},
     companyId: {type: Schema.Types.ObjectId, ref: 'Company'},
@@ -12,4 +12,5 @@ const StaffSchema = new Schema({
 });
 
 const Staff = mongoose.model('Staff', StaffSchema);
+
 module.exports = {Staff}

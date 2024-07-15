@@ -28,16 +28,16 @@ function NavBar({ roleCo2, setTogNavBar, togNavBar }) {
         e.preventDefault();
         sessionStorage.removeItem('company');
         sessionStorage.removeItem('user');
-         dispatch(clearUser());
+        dispatch(clearUser());
         navigate('/');
     }
     return (
         <>
             <div className={toggle ? 'sidebar active' : 'sidebar'}>
-                {/* className={({ isActive }) => (isActive ? "nav-link-active" : "")} */}
-                {/* <div className='menu-btn' onClick={handleToggle} >
+                {/* { className={({ isActive }) => (isActive ? "nav-link-active" : "")} }
+                { <div className='menu-btn' onClick={handleToggle} >
                     <AiOutlineMenu size={30} />
-                </div> */}
+                </div> } */}
                 <div className="head">
                     <div className='user-img cursor-pointer' onClick={handleToggle}>
                         <img src={logo} alt='logo.png' width={50} height={50} />

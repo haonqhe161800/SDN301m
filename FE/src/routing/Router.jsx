@@ -8,6 +8,7 @@ import UpgradeAccount from '../Components/Screens/UpgradeAccount';
 import JobOpportunities from '../Components/Screens/JobOpportunities';
 import JobOpportunitiesDetail from '../Components/Screens/JobOpportunitiesDetail';
 import MyCv from '../Components/Screens/MyCv';
+import CreateMyCv from '../Components/Screens/CreateMyCV';
 import MyApplyJob from '../Components/Screens/MyApplyJob';
 import MyFollowCompany from '../Components/Screens/MyFollowCompany';
 import MyTrackedJob from '../Components/Screens/MyTrackedJob';
@@ -54,7 +55,7 @@ const Router = () => {
             <Route path='/co-hoi-nghe-nghiep' element={<JobOpportunities />} />
             <Route path='/danh-sach-cong-ty-mod' element={<ListCompanyMod />} />
             <Route path='/tao-bai-tuyen-dung' element={<RecruimentPostHR />} />
-            <Route path='/lien-he' element={<ChatWithHR />} />
+            
             <Route path='/danh-sach-quan-li-trang-web' element={<ModController/>}/>
             <Route path='/danh-sach-quan-li-cong-ty' element={<CompanyController/>}/>
 
@@ -62,7 +63,7 @@ const Router = () => {
                 {/* Private */}
                 <Route path='/tai-khoan' element={<MyAccount />} />
                 <Route path='/nang-cap' element={<UpgradeAccount />} />
-                <Route path='/tao-cv' element={<SimpleTemplate />} />
+                <Route path='/tao-cv' element={<CreateMyCv />} />
                 <Route path='/ho-so-cua-toi' element={<MyCv />} />
                 <Route path='/viec-lam-da-ung-tuyen' element={<MyApplyJob />} />
                 <Route path='/cong-ty-dang-theo-doi' element={<MyFollowCompany />} />
@@ -80,7 +81,6 @@ const Router = () => {
                 <Route path='/chinh-sua-bai-tuyen-dung/:pid' element={<EditPostHR />} />
                 <Route path='/danh-sach-cong-viec' element={<JobListHR />} />
                 <Route path='/danh-sach-ung-vien' element={<CandidatesListHR />} />
-                <Route path='/lien-he-voi-ung-vien' element={<ChatWithHR type={2} />} />
                 <Route path='/xem-cv-ung-vien/:path/:name' element={<ViewCV />} />
             </Route>
             <Route element={<AuthenHRManager />}>
