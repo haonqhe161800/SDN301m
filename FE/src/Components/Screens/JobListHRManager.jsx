@@ -63,7 +63,7 @@ function JobListHRManager(props) {
             });
 
             console.log(res.data.status);
-            if (res.data.status === "accepted") {
+            if (res.data.status === "Accepted") {
                 window.alert('Cập nhật trạng thái bài viết hiển thị');
             } else if (res.data.status = "Pending") {
                 window.alert('Cập nhật trạng thái bài viết chờ');

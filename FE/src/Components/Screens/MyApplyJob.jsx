@@ -5,6 +5,8 @@ import { WiTime12 } from "react-icons/wi";
 import { CiSearch } from "react-icons/ci";
 
 function MyApplyJob(props) {
+    
+
     return (
         <DashboardCustomer>
             <HeaderV2 hrefType={'Việc làm đã ứng tuyển'} />

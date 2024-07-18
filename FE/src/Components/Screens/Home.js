@@ -6,21 +6,33 @@ import Form from 'react-bootstrap/Form';
 import InputGroup from 'react-bootstrap/InputGroup';
 import { Button, Container } from "react-bootstrap";
 import axios from "axios";
-const options = [];
+import { Link, useLocation, useNavigate } from "react-router-dom";
 
-const time = [
-    { value: 'Fulltime', label: 'Toàn thời gian' },
-    { value: 'Partime', label: 'Bán thời gian' },
-];
-const location = [
-    { value: 'Hà Nội', label: 'Hà Nội' },
-    { value: 'Thành Phố Hồ Chí Minh', label: 'Thành Phố Hồ Chí Minh' },
-];
+const itemsPerPage = 4;
+
 function Home() {
-    const [selectedOption, setSelectedOption] = useState(null);
-    const [selectedTime, setSelectedTime] = useState(time[0]);
-    const [selectedLocation, setSelectedLocation] = useState(null);
-    const [selectedPosition, setSelectedPosition] = useState([]);
+    const [posts, setPosts] = useState([]);
+    const [itemOffset, setItemOffset] = useState(0);
+    const [visiblePosts, setVisiblePosts] = useState(4);
+
+    const location = useLocation();
+    const nav = useNavigate();
+
+
+    useEffect(() => {
+        axios.get('http://localhost:9999/api/post/get-all-posts')
+            .then((res) => {
+                setPosts(res.data.data); // Lưu danh sách bài viết từ API vào state
+            })
+            .catch((err) => {
+                console.log(err);
+            });
+    }, []);
+
+    const loadMorePosts = () => {
+        setVisiblePosts(prevVisiblePosts => prevVisiblePosts + 4); // Tăng số lượng bài viết hiển thị lên 4
+    };
+
     const [fragment, setFragment] = useState(1);
 
     useEffect(() => {
@@ -34,56 +46,31 @@ function Home() {
             })
         })
 
-        axios.get('http://localhost:9999/api/job-category/get-all-categories').then((res) => {
-            setSelectedPosition(res.data);
-        }).catch((err) => {
-            console.log(err);
-        })
-
-        
-
     }, [])
 
     function handleSearch(event) {
-        
+
     }
+
+    const handlePageChange = (newOffset) => {
+        setItemOffset(newOffset);
+
+        const urlParams = new URLSearchParams(location.search);
+        urlParams.set('page', (newOffset / itemsPerPage) + 1);
+        const pageQuery = urlParams.toString();
+        nav(`/co-hoi-nghe-nghiep?${pageQuery}`);
+    };
 
     return (
         <Default>
             <div className="relative">
-                <img src={background} alt="background" className="w-ful object-cover opacity-200" />
+                <img src={background} alt="background" className="w-full object-cover opacity-90" />
                 <div className="absolute text-center bottom-0 left-[32em] translate-y-[-30%]">
                     <span className="text-5xl font-serif font-semibold text-white ">Tham gia cùng G1CV !</span>
                     <p className="text-white text-lg">Tại G1CV, chúng tôi tin rằng con người là tài sản quý báu nhất. <br />
                         Chúng tôi không chỉ tạo ra môi trường  làm việc đáng sống mà còn cung cấp cơ hội phát triển sự nghiệp của bạn</p>
                     <div className="mx-auto flex">
-                        <Select
-                            defaultValue={selectedOption}
-                            onChange={setSelectedOption}
-                            options={options}
-                            className="w-[20%] h-full mt-5 rounded-lg p-2"
-                            placeholder="Chọn lĩnh vực"
-                        />
-                        <Select
-                            defaultValue={selectedTime}
-                            onChange={setSelectedTime}
-                            options={time}
-                            className="w-[20%] h-full mt-5 rounded-lg p-2"
-                        />
-                        <Select
-                            defaultValue={''}
-                            onChange={''}
-                            options={location}
-                            placeholder="Chọn địa điểm"
-                            className="w-[20%] h-full mt-5 rounded-lg p-2"
-                        />
-                        <InputGroup className="w-[20%] h-full mt-5 rounded-lg p-2">
-                            <InputGroup.Text><i class="fa-solid fa-magnifying-glass"></i></InputGroup.Text>
-                            <Form.Control id="inlineFormInputGroup" placeholder="Nhập vị trí chức danh" />
-                        </InputGroup>
-                        <div className="w-[20%] h-full mt-5 rounded-lg p-2">
-                            <Button className="w-full font-bold bg-yellow-500 text-black hover:bg-yellow-500 hover:outline-white" onClick={event => handleSearch(event)}>Tìm kiếm</Button>
-                        </div>
+                        {/* Các dropdown và nút tìm kiếm ở đây */}
                     </div>
                 </div>
             </div>
@@ -99,112 +86,36 @@ function Home() {
                 </div>
             </div>
             <div className="flex flex-wrap gap-3 mx-auto w-[80%] mb-3 mt-5">
-                {/* Phần dành cho in những thông tin */}
-                <div className="w-[24%] rounded-lg shadow-xl shadow-slate-300 p-3 flex flex-col">
-                    <div className="flex flex-col">
+                {posts.slice(0, visiblePosts).map((post) => (
+                    <div key={post._id} className="w-[24%] rounded-lg shadow-xl shadow-slate-300 p-3 flex flex-col">
                         <div className="flex flex-col">
-                            <span className="font-bold ">Công ty cổ phần TMDV HGD. Công ty cổ phần TMDV HGD. Công ty cổ phần TMDV HGD</span>
-                            <div className="py-3 ">SHN Hưng Yên tuyển dụng vị trí giám đốc chi nhánh</div>
+                            <div className="flex flex-col">
+                                <span className="font-bold">Công ty: {post.companyId ? post.companyId.name : 'Chưa cập nhật'}</span>
+                                <div className="py-3">{post.title}</div>
+                            </div>
+                            <p className="mt-auto flex-shrink-0">
+                                <span className="font-bold">Yêu cầu:</span>
+                                <ul className="list-disc p-3">
+                                    <li>{post.jobDescription}</li>
+                                    <li>{post.candidateReq}</li>
+                                </ul>
+                            </p>
                         </div>
-                        <p className="mt-auto flex-shrink-0">
-                            <span className="font-bold">Yêu cầu:</span>
-                            <ul className="list-disc p-3">
-                                <li>6 năm kinh nghiệm vị trí quản lý</li>
-                                <li>Có bằng cử nhân kinh tế</li>
-                                <li>Thông thạo tiếng anh</li>
-                            </ul>
-                        </p>
-                    </div>
-                    <div className="mt-auto flex-shrink-0 border-t-2">
-                        <div>Hạn ứng tuyển: <span className="font-bold">30/12/2018</span></div>
-                        <div>Địa điểm: <span className="font-bold">Hưng Yên</span></div>
-                        <div>
-                            <button className="text-white bg-[#141a45ff] rounded-md px-5 py-2 m-2">Chi tiết</button>
-                            <button className="text-white bg-[#f25b29ff] rounded-md px-4 py-2 m-2 bg-gradient-to-r from-[#FF622F] to-[#4B0080]"> Ứng tuyển</button>
-                        </div>
-                    </div>
-                </div>
-
-                <div className="w-[24%] rounded-lg shadow-xl shadow-slate-300 p-3 flex flex-col">
-                    <div className="flex flex-col">
-                        <div className="flex flex-col flex-[1]">
-                            <span className="font-bold">Công ty cổ phần TMDV HGD</span>
-                            <div className="py-3 ">SHN Hưng Yên tuyển dụng vị trí giám đốc chi nhánh</div>
-                        </div>
-                        <p className="mt-auto flex-shrink-0">
-                            <span className="font-bold">Yêu cầu:</span>
-                            <ul className="list-disc p-3">
-                                <li>6 năm kinh nghiệm vị trí quản lý</li>
-                                <li>Có bằng cử nhân kinh tế</li>
-                                <li>Thông thạo tiếng anh</li>
-                            </ul>
-                        </p>
-                    </div>
-                    <div className="mt-auto flex-shrink-0 border-t-2">
-                        <div>Hạn ứng tuyển: <span className="font-bold">30/12/2018</span></div>
-                        <div>Địa điểm: <span className="font-bold">Hưng Yên</span></div>
-                        <div>
-                            <button className="text-white bg-[#141a45ff] rounded-md px-5 py-2 m-2">Chi tiết</button>
-                            <button className="text-white bg-[#f25b29ff] rounded-md px-4 py-2 m-2 bg-gradient-to-r from-[#FF622F] to-[#4B0080]"> Ứng tuyển</button>
+                        <div className="mt-auto flex-shrink-0 border-t-2">
+                            <div>Hạn ứng tuyển: <span className="font-bold">{post.deadline}</span></div>
+                            <div>Địa điểm: <span className="font-bold">{post.location}</span></div>
+                            <div>
+                                <Link to={`/co-hoi-nghe-nghiep/post_id=${post?._id}`} className="text-white bg-[#141a45ff] rounded-md px-5 py-2 m-2">Chi tiết</Link>
+                                <button className="text-white bg-gradient-to-r from-[#FF622F] to-[#4B0080] rounded-md px-4 py-2 m-2"> Ứng tuyển</button>
+                            </div>
                         </div>
                     </div>
-                </div>
-
-                <div className="w-[24%] rounded-lg shadow-xl shadow-slate-300 p-3 flex flex-col">
-                    <div className="flex flex-col">
-                        <div className="flex flex-col flex-[1]">
-                            <span className="font-bold">Công ty cổ phần TMDV HGD</span>
-                            <div className="py-3 ">SHN Hưng Yên tuyển dụng vị trí giám đốc chi nhánh</div>
-                        </div>
-                        <p className="mt-auto flex-shrink-0">
-                            <span className="font-bold">Yêu cầu:</span>
-                            <ul className="list-disc p-3">
-                                <li>6 năm kinh nghiệm vị trí quản lý</li>
-                                <li>Có bằng cử nhân kinh tế</li>
-                                <li>Thông thạo tiếng anh</li>
-                            </ul>
-                        </p>
-                    </div>
-                    <div className="mt-auto flex-shrink-0 border-t-2">
-                        <div>Hạn ứng tuyển: <span className="font-bold">30/12/2018</span></div>
-                        <div>Địa điểm: <span className="font-bold">Hưng Yên</span></div>
-                        <div>
-                            <button className="text-white bg-[#141a45ff] rounded-md px-5 py-2 m-2">Chi tiết</button>
-                            <button className="text-white bg-[#f25b29ff] rounded-md px-4 py-2 m-2 bg-gradient-to-r from-[#FF622F] to-[#4B0080]"> Ứng tuyển</button>
-                        </div>
-                    </div>
-                </div>
-
-                <div className="w-[24%] rounded-lg shadow-xl shadow-slate-300 p-3 flex flex-col">
-                    <div className="flex flex-col">
-                        <div className="flex flex-col flex-[1]">
-                            <span className="font-bold">Công ty cổ phần TMDV HGD</span>
-                            <div className="py-3 ">SHN Hưng Yên tuyển dụng vị trí giám đốc chi nhánh. SHN Hưng Yên tuyển dụng vị trí giám đốc chi nhánh
-                                SHN Hưng Yên tuyển dụng vị trí giám đốc chi nhánh. SHN Hưng Yên tuyển dụng vị trí giám đốc chi nhánh</div>
-                        </div>
-                        <p className="mt-auto flex-shrink-0">
-                            <span className="font-bold">Yêu cầu:</span>
-                            <ul className="list-disc p-3">
-                                <li>6 năm kinh nghiệm vị trí quản lý</li>
-                                <li>Có bằng cử nhân kinh tế</li>
-                                <li>Thông thạo tiếng anh</li>
-                                <li>Thông thạo tiếng anh</li>
-                                <li>Thông thạo tiếng anh</li>
-                                <li>Thông thạo tiếng anh</li>
-                            </ul>
-                        </p>
-                    </div>
-                    <div className="mt-auto flex-shrink-0 border-t-2">
-                        <div>Hạn ứng tuyển: <span className="font-bold">30/12/2018</span></div>
-                        <div>Địa điểm: <span className="font-bold">Hưng Yên</span></div>
-                        <div>
-                            <button className="text-white bg-[#141a45ff] rounded-md px-5 py-2 m-2">Chi tiết</button>
-                            <button className="text-white bg-[#f25b29ff] rounded-md px-4 py-2 m-2 bg-gradient-to-r from-[#FF622F] to-[#4B0080]"> Ứng tuyển</button>
-                        </div>
-                    </div>
-                </div>
-                <button className="text-white bg-[#f25b29ff] rounded-md px-4 py-2 m-2 hover:bg-[#f25b29ff] outline-none mx-auto">Xem thêm</button>
+                ))}
+                {visiblePosts < posts.length && (
+                    <button onClick={loadMorePosts} className="text-white bg-[#f25b29ff] rounded-md px-4 py-2 m-2 hover:bg-[#f25b29ff] outline-none mx-auto">Xem thêm</button>
+                )}
             </div>
+            
             <div className="ml-[15%]">
                 <p className="text-2xl font-['time'] font-bold text-[#203066ff]">Các công ty thành viên khác</p>
                 <p>Hãy cùng chúng tôi chia sẻ niềm đam mê với biển cả tham gia vào các sự kiện độc đáo mà <br />

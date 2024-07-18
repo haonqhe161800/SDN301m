@@ -250,7 +250,7 @@ function JobOpportunitiesDetail(props) {
               />
             </svg>
 
-            <button className="bg-orange-500 text-white px-4 py-2 rounded">
+            <button onClick={() => onUpload()} className="bg-orange-500 text-white px-4 py-2 rounded">
               Ứng tuyển
             </button>
           </div>

@@ -55,6 +55,7 @@ const Router = () => {
             <Route path='/co-hoi-nghe-nghiep' element={<JobOpportunities />} />
             <Route path='/danh-sach-cong-ty-mod' element={<ListCompanyMod />} />
             <Route path='/tao-bai-tuyen-dung' element={<RecruimentPostHR />} />
+            <Route path='/co-hoi-nghe-nghiep/:tieu-de-cong-viec' element={<JobOpportunitiesDetail />} />
             
             <Route path='/danh-sach-quan-li-trang-web' element={<ModController/>}/>
             <Route path='/danh-sach-quan-li-cong-ty' element={<CompanyController/>}/>
@@ -68,7 +69,7 @@ const Router = () => {
                 <Route path='/viec-lam-da-ung-tuyen' element={<MyApplyJob />} />
                 <Route path='/cong-ty-dang-theo-doi' element={<MyFollowCompany />} />
                 <Route path='/viec-lam-da-luu' element={<MyTrackedJob />} />
-                <Route path='/co-hoi-nghe-nghiep/:tieu-de-cong-viec' element={<JobOpportunitiesDetail />} />
+                
                 <Route path='/lien-he-voi-nha-tuyen-dung' element={<ChatWithHR type={1} />} />
             </Route>
             <Route element={<AuthenCompany />}>

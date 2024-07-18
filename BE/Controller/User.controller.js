@@ -1,4 +1,5 @@
 const db = require('../Model/index.js');
+const bcrypt = require("bcrypt");
 const mail = require("../MailService/MailService.js").mail;
 const ApplyJob = db.ApplyJob;
 const User = db.User;
@@ -17,7 +18,7 @@ const insertUser = async (req, res) => {
             const { username, password, phone, email } = req.body;
             const newUser = new User({
                 username,
-                password,
+                password: bcrypt.hashSync(req.body.password, parseInt(process.env.PASSWORD_KEY)),
                 phone,
                 email,
                 created_at: now,
